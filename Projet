@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galerie Photo Interactive</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+      margin: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    #image {
+      width: 80%;
+      height: 300px;
+      margin: 20px auto;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      background-color: #ddd;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #555;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    .gallery {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    img {
+      width: 120px;
+      height: 80px;
+      object-fit: cover;
+      border: 2px solid transparent;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    img:hover {
+      transform: scale(1.1);
+      border-color: #0078d7;
+    }
+  </style>
+</head>
+<body>
+  <h1>Galerie Photo Interactive</h1>
+
+  <!-- Zone principale qui affichera les images et le texte -->
+  <div id="image">Survolez une image ci-dessous pour l'afficher ici</div>
+
+  <!-- Miniatures à survoler -->
+  <div class="gallery">
+    <img src="https://media.istockphoto.com/id/1325997570/fr/photo/chat-bengale-mentant-sur-un-canap%C3%A9-et-souriant.jpg?s=612x612&w=0&k=20&c=4tJM_vcujYxD0MWK3cPyhTvLY-8ErgzXBKCbQyV5ZNA=" alt="Chat mignon allongé sur un canapé" onmouseover="upDate(this)" onmouseleave="unDo()">
+    <img src="https://previews.123rf.com/images/annaav/annaav2004/annaav200400167/144556972-the-dog-runs-to-the-field-pet-on-the-nature-happy-jack-russell-terrier-plays-on-the-grass.jpg" alt="Chien jouant dans un champ" onmouseover="upDate(this)" onmouseleave="unDo()">
+    <img src="https://img.freepik.com/photos-premium/plage-doree-au-coucher-du-soleil-rouges-oranges-dominant-ciel-cree-ia-generative_124507-171240.jpg" alt="Plage dorée au coucher du soleil" onmouseover="upDate(this)" onmouseleave="unDo()">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjJmvYd_XIcY953imZi_HqZB564jgvoJ-zOg&s" alt="Montagne enneigée sous un ciel bleu" onmouseover="upDate(this)" onmouseleave="unDo()">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ8bVlgZCSGcHwXcZyseggv18IpvQst4_QMw&s" alt="Oiseau coloré perché sur une branche" onmouseover="upDate(this)" onmouseleave="unDo()">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuKdgDY7F4Jbyoh6sLWHLyiHuy4Urs6J6Zqg&s" alt="Lion majestueux dans la savane" onmouseover="upDate(this)" onmouseleave="unDo()">
+  </div>
+
+  <script>
+    // Fonction déclenchée quand la souris survole une image
+    function upDate(previewPic) {
+      console.log("Événement déclenché : survol d'une image !");
+      console.log("Source de l'image :", previewPic.src);
+      console.log("Texte alternatif :", previewPic.alt);
+
+      const imageDiv = document.getElementById("image");
+
+      // Mettre à jour le texte
+      imageDiv.textContent = previewPic.alt;
+
+      // Mettre à jour l'image d'arrière-plan
+      imageDiv.style.backgroundImage = "url('" + previewPic.src + "')";
+    }
+
+    // Fonction déclenchée quand la souris quitte l'image
+    function unDo() {
+      console.log("Événement déclenché : départ de la souris !");
+      const imageDiv = document.getElementById("image");
+
+      // Rétablir le texte d'origine
+      imageDiv.textContent = "Survolez une image ci-dessous pour l'afficher ici";
+
+      // Rétablir l'image d'arrière-plan vide
+      imageDiv.style.backgroundImage = "url('')";
+    }
+  </script>
+</body>
+</html>
