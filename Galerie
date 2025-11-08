@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galerie Photo Nature et Animaux</title>
+
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      text-align: center;
+      margin: 20px;
+    }
+
+    h1 {
+      color: #006699;
+      margin-bottom: 20px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    figure {
+      width: 220px;
+    }
+
+    img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border: 4px solid transparent;
+      border-radius: 8px;
+      transition: transform 0.3s, border-color 0.3s;
+      cursor: pointer;
+    }
+
+    img:hover,
+    img:focus {
+      transform: scale(1.05);
+      border-color: #0078d7;
+      outline: none;
+    }
+
+    figcaption {
+      margin-top: 5px;
+      font-size: 0.9em;
+      color: #555;
+    }
+  </style>
+</head>
+
+<body onload="initGallery()">
+  <h1>Galerie Photo : Nature et Animaux</h1>
+
+  <div class="gallery">
+    <figure>
+      <img src="https://media.istockphoto.com/id/599888852/fr/photo/lion-%C3%A0-savannah.jpg?s=612x612&w=0&k=20&c=u5FS0UHUuuhkbzs7udtdMx6qouNwB8CYgUI-O0tdOYU=" alt="Lion">
+      <figcaption>Lion majestueux dans la savane africaine</figcaption>
+    </figure>
+
+    <figure>
+      <img src="https://images.unsplash.com/photo-1628194702552-681690c48a80?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dGlncmUlMjBkZSUyMGZvciVDMyVBQXR8ZW58MHx8MHx8fDA%3D&fm=jpg&q=60&w=3000" alt="Tigre en forêt ">
+      <figcaption>Tigre marchant dans une forêt tropicale</figcaption>
+    </figure>
+
+    <figure>
+      <img src="https://www.vert-costa-rica.fr/wp-content/uploads/2050/07/toucan-costa-rica.jpg" alt="Oiseau exotique">
+      <figcaption> Oiseau coloré perché sur une branche</figcaption>
+    </figure>
+
+    <figure>
+      <img src="https://www.partirou.com/envie-de/plages-tropicales/anse-source-d-argent/images/anse-source-argent.jpg" alt="Plage tropicale">
+      <figcaption> Plage de sable fin et mer turquoise au coucher du soleil</figcaption>
+    </figure>
+
+    <figure>
+      <img src="https://media.istockphoto.com/id/584574568/fr/photo/paysage-de-montagnes.jpg?b=1&s=612x612&w=0&k=20&c=egC1jyfVsJdoMfyw13_CKqx8nLijoqEgrgtGPfZcFOI=" alt="Montagne enneigée">
+      <figcaption> Paysage de montagne enneigée sous un ciel bleu clair</figcaption>
+    </figure>
+
+    <figure>
+      <img src="https://www.mmv.fr/images/cms/lac-montagne/lacs-ayous-pyrenees-atlantiques.jpg?frz-v=567" alt="Lac en montagne">
+      <figcaption> Lac tranquille entouré de montagnes verdoyantes</figcaption>
+    </figure>
+  </div>
+
+  <script>
+    // Fonction exécutée au chargement de la page
+    function initGallery() {
+      console.log("Page chargée : initialisation de la galerie...");
+      const images = document.querySelectorAll('.gallery img');
+
+      for (let i = 0; i < images.length; i++) {
+        // Ajouter un tabindex pour l'accès clavier
+        images[i].setAttribute('tabindex', '0');
+
+        // Ajouter les écouteurs d'événements souris
+        images[i].addEventListener('mouseover', highlightImage);
+        images[i].addEventListener('mouseleave', removeHighlight);
+
+        // Ajouter les écouteurs d'événements clavier (focus/blocage)
+        images[i].addEventListener('focus', highlightImage);
+        images[i].addEventListener('blur', removeHighlight);
+      }
+    }
+
+    // Mettre en évidence une image
+    function highlightImage(event) {
+      event.target.style.borderColor = '#ff6600';
+      console.log("Image activée :", event.target.alt);
+    }
+
+    // Retirer la mise en évidence
+    function removeHighlight(event) {
+      event.target.style.borderColor = 'transparent';
+    }
+  </script>
+</body>
+</html>
